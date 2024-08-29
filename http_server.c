@@ -55,7 +55,7 @@ void handle_connection(int fd, int(*handler)(char*, char*, size_t)) {
 	return;
 }
 
-void start_server(int(*handler)(char*, char*, size_t)) {
+void start_server(int(*handler)(char*, char*, size_t), int port) {
     int listenfd, socketfd;
     socklen_t length;
     static struct sockaddr_in cli_addr;
@@ -67,7 +67,7 @@ void start_server(int(*handler)(char*, char*, size_t)) {
     
    	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-	serv_addr.sin_port = htons(8080);
+	serv_addr.sin_port = htons(port);
 	if(bind(listenfd, (struct sockaddr *)&serv_addr,sizeof(serv_addr)) <0) {
 		error("Bind failed", 102);
 	}
