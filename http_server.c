@@ -12,7 +12,7 @@
 #define VERSION 25
 
 void error(char* err, int code) {
-	eprintf(err);
+	fprintf(stderr, "%s\n", err);
 	exit(code);
 }
 
